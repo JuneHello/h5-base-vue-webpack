@@ -31,7 +31,9 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       }
     },
     define: {
-      "process.env.VITE": true
+      "process.env": {
+        VITE: true
+      }
     },
     resolve: {
       extensions: [".js", ".ts", ".jsx", ".tsx", ".json", ".vue", ".mjs"],

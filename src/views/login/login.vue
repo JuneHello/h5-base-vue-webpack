@@ -1,5 +1,5 @@
 <template>
-  <div>login</div>
+  <van-button type="primary">login</van-button>
 </template>
 
 <script setup lang="ts"></script>

@@ -1,6 +1,7 @@
 const { defineConfig } = require("@vue/cli-service");
 const path = require("path");
-const Components = require("unplugin-vue-components/webpack");
+const ComponentsPlugin = require("unplugin-vue-components/webpack");
+const { VantResolver } = require("@vant/auto-import-resolver");
 
 function resolve(dir) {
   return path.join(__dirname, dir);
@@ -24,7 +25,7 @@ module.exports = defineConfig({
     // }
   },
   transpileDependencies: true,
-  lintOnSave: process.env.NODE_ENV === "development",
+  lintOnSave: process.env.VUE_APP_NODE_ENV === "development",
   chainWebpack: function (config) {
     config.module.rule("svg").exclude.add(path.resolve(__dirname, "./src/assets/icons")).end();
   },
@@ -35,12 +36,7 @@ module.exports = defineConfig({
         "/#/": resolve("types")
       }
     },
-    plugins: [
-      Components({
-        types: [],
-        dts: true
-      })
-    ],
+    plugins: [ComponentsPlugin.default({ resolvers: [VantResolver()] })],
     module: {
       rules: [
         {

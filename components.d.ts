@@ -5,11 +5,14 @@
 // Read more: https://github.com/vuejs/core/pull/3399
 export {}
 
-declare module "vue" {
+declare module 'vue' {
   export interface GlobalComponents {
-    403: (typeof import("./src/components/ErrorMessage/403.vue"))["default"];
-    404: (typeof import("./src/components/ErrorMessage/404.vue"))["default"];
-    500: (typeof import("./src/components/ErrorMessage/500.vue"))["default"];
-    SvgIcon: (typeof import("./src/components/SvgIcon/SvgIcon.vue"))["default"];
+    403: typeof import('./src/components/ErrorMessage/403.vue')['default']
+    404: typeof import('./src/components/ErrorMessage/404.vue')['default']
+    500: typeof import('./src/components/ErrorMessage/500.vue')['default']
+    RouterLink: (typeof import("vue-router"))["RouterLink"]
+    RouterView: (typeof import("vue-router"))["RouterView"]
+    SvgIcon: typeof import('./src/components/SvgIcon/SvgIcon.vue')['default']
+    VanButton: typeof import('vant/es')['Button']
   }
 }
