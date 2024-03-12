@@ -7,6 +7,9 @@ export {}
 
 declare module "vue" {
   export interface GlobalComponents {
-    HelloWorld: (typeof import("./src/components/HelloWorld.vue"))["default"];
+    403: (typeof import("./src/components/ErrorMessage/403.vue"))["default"];
+    404: (typeof import("./src/components/ErrorMessage/404.vue"))["default"];
+    500: (typeof import("./src/components/ErrorMessage/500.vue"))["default"];
+    SvgIcon: (typeof import("./src/components/SvgIcon/SvgIcon.vue"))["default"];
   }
 }

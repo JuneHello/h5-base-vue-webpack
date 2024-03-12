@@ -1,29 +1,19 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view />
+  <router-view v-slot="{ Component, route }">
+    <transition appear name="fade-transform" mode="out-in">
+      <keep-alive :include="keepAliveName">
+        <component :is="Component" :key="route.fullPath" />
+      </keep-alive>
+    </transition>
+  </router-view>
 </template>
 
-<script lang="ts" setup></script>
+<script setup lang="ts">
+import { storeToRefs } from "pinia";
+import { useKeepAliveStore } from "@/stores/modules/keepAlive";
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  color: #2c3e50;
-  text-align: center;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+const keepAliveStore = useKeepAliveStore();
+const { keepAliveName } = storeToRefs(keepAliveStore);
+</script>
+
+<style scoped></style>
